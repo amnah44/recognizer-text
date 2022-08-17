@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "295076066892",
+    "project_id": "read-text-recognize",
+    "storage_bucket": "read-text-recognize.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295076066892:android:9c2326fa4e5917a60866e9",
+        "android_client_info": {
+          "package_name": "com.amnah.recog_txt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "295076066892-qsd2hg6q86h9gepbcu1ng9mp7t233ael.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN2HC8KFZHcUyO6_HI_b3uM5NmUtkDEf8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295076066892-qsd2hg6q86h9gepbcu1ng9mp7t233ael.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
