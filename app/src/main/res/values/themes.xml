@@ -15,13 +15,28 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="SplashScreen" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+
+    </style>
+
 
     <style name="ShapeableStyle" >
         <item name="cornerSize">8%</item>
     </style>
     <style name="ShapeableCameraStyle" >
-        <item name="cornerSizeTopRight">2%</item>
-        <item name="cornerSizeTopLeft">2%</item>
+        <item name="cornerSize">8%</item>
     </style>
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">

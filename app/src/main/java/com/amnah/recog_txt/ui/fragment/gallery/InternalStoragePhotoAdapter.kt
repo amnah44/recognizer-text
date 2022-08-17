@@ -34,10 +34,6 @@ class InternalStoragePhotoAdapter(
         holder.binding.apply {
             photo.setImageBitmap(currentPosition.bmp)
             aspectRatio(currentPosition, root, photo)
-
-            deleteBtn.setOnClickListener {
-                listener.onDeleteClickListener(currentPosition)
-            }
         }
         detectText.detectTextFromImage(currentPosition.bmp, holder.binding)
     }
