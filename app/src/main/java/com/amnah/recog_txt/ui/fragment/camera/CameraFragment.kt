@@ -7,8 +7,11 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
+import com.amnah.recog_txt.data.model.Item
 import com.amnah.recog_txt.databinding.FragmentCameraBinding
 import com.amnah.recog_txt.ui.fragment.base.BaseFragment
 import com.amnah.recog_txt.util.Constants.TAG_CAMERA_FRAGMENT
@@ -27,25 +30,34 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         FragmentCameraBinding::inflate
 
     private lateinit var _binding: FragmentCameraBinding
+    private lateinit var _viewModel: CameraViewModel
     private lateinit var imageBitmap: Bitmap
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCameraBinding.bind(view)
-        savePhoto()
+        _viewModel = ViewModelProvider(this)[CameraViewModel::class.java]
+
+        _binding.button.setOnClickListener {
+            savePhoto()
+        }
+
         dispatchTakePictureIntent()
 
     }
 
     private fun savePhoto() {
-        _binding.button.setOnClickListener {
-            if (_binding.textDetected.text != "") {
-                savePhotoToInternalStorage(UUID.randomUUID().toString(), imageBitmap)
 
-            } else {
-                context?.toastMessage("Take a picture please..")
-            }
+        if (_binding.textDetected.text != "") {
+
+            savePhotoToInternalStorage(UUID.randomUUID().toString(), imageBitmap)
+            val item = Item(0,UUID.randomUUID().toString(), _binding.textDetected.text.toString())
+            _viewModel.addItem(item)
+
+        } else {
+            context?.toastMessage("Take a picture please..")
         }
+
     }
 
     private fun savePhotoToInternalStorage(fileName: String, bmp: Bitmap): Boolean {
@@ -64,7 +76,6 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         }
 
     }
-
 
     private fun dispatchTakePictureIntent() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -92,7 +103,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         firebaseVisionTextDetector.detectInImage(firebaseImage).addOnSuccessListener {
 
             displayTextFromImage(it)
-            
+
         }.addOnFailureListener {
             log("onFailure")
         }
